@@ -76,11 +76,20 @@ async function startCamera(facingMode) {
   }
 
   mediaStream = await navigator.mediaDevices.getUserMedia({
-    video: {
-      facingMode: facingMode
+  video: {
+    facingMode: facingMode,
+    width: {
+      ideal: 1080
     },
-    audio: true
-  });
+    height: {
+      ideal: 1920
+    },
+    aspectRatio: {
+      ideal: 9 / 16
+    }
+  },
+  audio: true
+});
 
   const source = createMediaStreamSource(mediaStream, {
     transform:
