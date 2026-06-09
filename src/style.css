@@ -1,0 +1,184 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: black;
+  font-family: Arial, "Microsoft JhengHei", sans-serif;
+}
+
+#canvas {
+  width: 100vw;
+  height: 100dvh;
+  display: block;
+  background: black;
+}
+
+#hint {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 16px;
+  border-radius: 999px;
+  color: white;
+  background: rgba(0, 0, 0, 0.45);
+  font-size: 15px;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+#switchCamera {
+  position: fixed;
+  right: 18px;
+  top: calc(env(safe-area-inset-top) + 18px);
+  z-index: 10;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: white;
+  background: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+#galleryButton {
+  position: fixed;
+  left: 18px;
+  bottom: calc(env(safe-area-inset-bottom) + 36px);
+  z-index: 10;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: white;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 14px;
+}
+
+#recordArea {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom) + 28px);
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+#recordButton {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 5px solid white;
+  background: #ff2f45;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+}
+
+#recordButton.recording {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: #ff2f45;
+}
+
+#recordText {
+  color: white;
+  font-size: 13px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+#downloadLink {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom) + 130px);
+  transform: translateX(-50%);
+  z-index: 10;
+  color: white;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 8px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+#galleryPanel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -70vh;
+  height: 70vh;
+  z-index: 30;
+  background: rgba(20, 20, 20, 0.96);
+  color: white;
+  border-radius: 22px 22px 0 0;
+  transition: bottom 0.25s ease;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+#galleryPanel.open {
+  bottom: 0;
+}
+
+#galleryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#closeGallery {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: white;
+  color: black;
+}
+
+.gallery-item {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gallery-item video {
+  width: 100%;
+  border-radius: 14px;
+  background: black;
+}
+
+.gallery-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.gallery-actions a,
+.gallery-actions button {
+  flex: 1;
+  text-align: center;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 12px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#photoButton {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: white;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 14px;
+}

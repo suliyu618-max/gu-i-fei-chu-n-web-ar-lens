@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Web AR Lens</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <canvas id="canvas"></canvas>
+
+      <div id="hint">點擊螢幕切換配件</div>
+
+      <button id="switchCamera">切換鏡頭</button>
+
+      <button id="galleryButton">我的拍攝</button>
+
+      <div id="recordArea">
+  <button id="recordButton"></button>
+  <div id="recordText">
+    點一下拍照・長按錄影
+  </div>
+</div>
+
+      <a id="downloadLink" style="display:none;">下載影片</a>
+
+      <div id="galleryPanel">
+        <div id="galleryHeader">
+          <span>我的拍攝</span>
+          <button id="closeGallery">關閉</button>
+        </div>
+
+        <div id="galleryList"></div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
