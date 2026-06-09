@@ -8,19 +8,6 @@ const API_TOKEN = "eyJhbGciOiJIUzI1NiIsImtpZCI6IkNhbnZhc1MyU0hNQUNQcm9kIiwidHlwI
 const GROUP_ID = "823dbcd7-8413-41b3-a31c-872a2410e804";
 
 const canvas = document.getElementById("canvas");
-function resizeCanvas() {
-  const ratio = window.devicePixelRatio || 1;
-
-  canvas.width = window.innerWidth * ratio;
-  canvas.height = window.innerHeight * ratio;
-}
-
-resizeCanvas();
-
-window.addEventListener(
-  "resize",
-  resizeCanvas
-);
 const recordButton = document.getElementById("recordButton");
 const recordText = document.getElementById("recordText");
 const switchCameraBtn = document.getElementById("switchCamera");
@@ -89,11 +76,21 @@ async function startCamera(facingMode) {
   }
 
   mediaStream = await navigator.mediaDevices.getUserMedia({
-  video: {
-    facingMode: facingMode
-  },
-  audio: true
-});
+    video: {
+      facingMode: facingMode
+    },
+    audio: true
+  });
+
+  const track = mediaStream.getVideoTracks()[0];
+  const settings = track.getSettings();
+
+  console.log("目前相機設定：", settings);
+
+  if (settings.width && settings.height) {
+    canvas.width = settings.width;
+    canvas.height = settings.height;
+  }
 
   const source = createMediaStreamSource(mediaStream, {
     transform:
@@ -145,6 +142,7 @@ function setupCaptureButton() {
 
   recordButton.addEventListener("mousedown", startPress);
   recordButton.addEventListener("mouseup", endPress);
+
   recordButton.addEventListener("mouseleave", () => {
     clearTimeout(pressTimer);
 
@@ -159,6 +157,14 @@ function setupCaptureButton() {
 
   recordButton.addEventListener("touchend", endPress, {
     passive: false
+  });
+
+  recordButton.addEventListener("touchcancel", () => {
+    clearTimeout(pressTimer);
+
+    if (isRecording) {
+      stopRecording();
+    }
   });
 }
 
