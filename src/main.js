@@ -8,6 +8,19 @@ const API_TOKEN = "eyJhbGciOiJIUzI1NiIsImtpZCI6IkNhbnZhc1MyU0hNQUNQcm9kIiwidHlwI
 const GROUP_ID = "823dbcd7-8413-41b3-a31c-872a2410e804";
 
 const canvas = document.getElementById("canvas");
+function resizeCanvas() {
+  const ratio = window.devicePixelRatio || 1;
+
+  canvas.width = window.innerWidth * ratio;
+  canvas.height = window.innerHeight * ratio;
+}
+
+resizeCanvas();
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
 const recordButton = document.getElementById("recordButton");
 const recordText = document.getElementById("recordText");
 const switchCameraBtn = document.getElementById("switchCamera");
@@ -77,16 +90,7 @@ async function startCamera(facingMode) {
 
   mediaStream = await navigator.mediaDevices.getUserMedia({
   video: {
-    facingMode: facingMode,
-    width: {
-      ideal: 1080
-    },
-    height: {
-      ideal: 1920
-    },
-    aspectRatio: {
-      ideal: 9 / 16
-    }
+    facingMode: facingMode
   },
   audio: true
 });
